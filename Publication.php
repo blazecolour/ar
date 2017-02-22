@@ -1,14 +1,27 @@
 <?php
-abstract class Publication
-{
-    public $title;
-    public $author;
-    public $publicationDate;
 
-    function __construct($title, $author)
+require_once ('ActiveRecord.php')
+abstract class Publication extends ActiveRecord
+
+{
+    protected $propList = [
+        'id' => [
+            'type' => 'integer',
+            'required' => true
+        ],
+        'name' => [
+            'type' => 'string',
+            'required' => true
+        ],
+        'surname' => [
+            'type' => 'string',
+            'required' => false
+        ]
+    ];
+
+    function __construct()
     {
-        $this->title = $title;
-        $this->author = $author;
+        $this->type = 'publication';
     }
 
     abstract public function draw();
